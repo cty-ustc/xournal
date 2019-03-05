@@ -146,7 +146,8 @@ void xo_skip_pages(int number);
 // defines for paper rulings
 
 #define RULING_MARGIN_COLOR 0xff0080ff
-#define RULING_COLOR 0x40a0ffff
+// #define RULING_COLOR 0x40a0ffff // Too deep blue - should lighten (JR, 2019/03/04)
+#define RULING_COLOR 0xc0f0ffff // JR, 2019/03/04
 #define RULING_THICKNESS 0.5
 #define RULING_LEFTMARGIN 72.0
 #define RULING_TOPMARGIN 80.0
