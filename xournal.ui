@@ -123,6 +123,11 @@ http://xournal.sourceforge.net/</property>
     <property name="can_focus">False</property>
     <property name="pixbuf">pixmaps/verythin.png</property>
   </object>
+  <object class="GtkImage" id="input_tablet_icon">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">pixmaps/input-tablet.png</property>
+  </object>
   <object class="GtkImage" id="fullscreen_icon">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -2991,6 +2996,17 @@ http://xournal.sourceforge.net/</property>
                     <property name="expand">False</property>
                     <property name="homogeneous">True</property>
                   </packing>
+                </child>
+                <child>
+                  <object class="GtkToggleToolButton" id="buttonToggleUseXInput">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">Use Xinput</property>
+                    <property name="label" translatable="yes">Use XInput</property>
+                    <property name="use_underline">True</property>
+                    <property name="icon_widget">input_tablet_icon</property>
+                    <signal name="toggled" handler="on_optionsUseXInput_activate" swapped="no"/>
+                  </object>
                 </child>
               </object>
               <packing>

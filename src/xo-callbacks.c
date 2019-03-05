@@ -3087,9 +3087,23 @@ G_MODULE_EXPORT void
 on_optionsUseXInput_activate           (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+  gboolean active;
   end_text();
-  ui.allow_xinput = ui.use_xinput =
-    gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM (menuitem));
+
+  if (GTK_OBJECT_TYPE(menuitem) == GTK_TYPE_CHECK_MENU_ITEM)
+    active = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM (menuitem));
+  else
+    active = gtk_toggle_tool_button_get_active(GTK_TOGGLE_TOOL_BUTTON (menuitem));
+
+  if (active == ui.use_xinput) return;
+
+  ui.allow_xinput = ui.use_xinput = active;
+   // gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM (menuitem));
+
+  gtk_check_menu_item_set_active(
+    GTK_CHECK_MENU_ITEM(GET_COMPONENT("optionsUseXInput")), ui.use_xinput);
+  gtk_toggle_tool_button_set_active(
+    GTK_TOGGLE_TOOL_BUTTON(GET_COMPONENT("buttonToggleUseXInput")), ui.use_xinput);
 
 /* HOW THINGS USED TO BE:
 

@@ -323,6 +323,8 @@ void init_stuff (command_line_options *clOptions)
      we need the windows to be mapped first */
   gtk_check_menu_item_set_active(
     GTK_CHECK_MENU_ITEM(GET_COMPONENT("optionsUseXInput")), ui.use_xinput);
+  gtk_toggle_tool_button_set_active(
+    GTK_TOGGLE_TOOL_BUTTON(GET_COMPONENT("buttonToggleUseXInput")), ui.use_xinput);
 
   /* fix a bug in GTK+ 2.16 and 2.17: scrollbars shouldn't get extended
      input events from pointer motion when cursor moves into main window */
