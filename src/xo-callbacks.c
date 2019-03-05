@@ -3854,6 +3854,21 @@ on_optionsLeftHanded_activate          (GtkMenuItem     *menuitem,
     ui.left_handed?GTK_CORNER_TOP_RIGHT:GTK_CORNER_TOP_LEFT);
 }
 
+
+// Added 2019/03/05 by JR (sitting in Sunny's Bangalore)
+G_MODULE_EXPORT void
+on_optionsScrollBarsOff_activate       (GtkMenuItem     *menuitem,   
+                                        gpointer         user_data)
+{
+  end_text();
+  GtkWidget* w = GET_COMPONENT("scrolledwindowMain");
+  ui.scrollbars_off = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM (menuitem));
+  gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(w) , ui.scrollbars_off? GTK_POLICY_NEVER:GTK_POLICY_AUTOMATIC, ui.scrollbars_off? GTK_POLICY_NEVER:GTK_POLICY_AUTOMATIC); // JR: 2019/03/05
+    // force a refresh - doesn't work
+    // gnome_canvas_set_pixels_per_unit(canvas, ui.zoom);
+    gtk_widget_show(w);
+}
+
 G_MODULE_EXPORT void
 on_optionsLockHorizontalScroll_activate     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)

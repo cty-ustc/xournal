@@ -355,7 +355,8 @@ typedef struct UIData {
   gulong resize_signal_handler;
   gdouble hiliter_opacity;
   guint hiliter_alpha_mask;
-  gboolean left_handed; // left-handed mode?
+  gboolean left_handed; // left-handed scrollbar
+  gboolean scrollbars_off; // turn off both scrollbars - JR, 2019/03/05
   gboolean lockHorizontalScroll; // do now allow scroll horizontally
   gboolean auto_save_prefs; // auto-save preferences ?
   gboolean shorten_menus; // shorten menus ?

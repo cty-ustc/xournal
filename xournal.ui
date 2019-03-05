@@ -2500,6 +2500,15 @@ http://xournal.sourceforge.net/</property>
                       </object>
                     </child>
                     <child>
+                      <object class="GtkCheckMenuItem" id="optionsScrollBarsOff">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Scrollbars Off</property>
+                        <property name="use_underline">True</property>
+                        <signal name="toggled" handler="on_optionsScrollBarsOff_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkCheckMenuItem" id="optionsShortenMenus">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
