@@ -943,6 +943,10 @@ void update_thickness_buttons(void)
       GTK_TOGGLE_TOOL_BUTTON(GET_COMPONENT("buttonThicknessOther")), TRUE);
   } else 
   switch (ui.cur_brush->thickness_no) {
+    case THICKNESS_VERYFINE:
+      gtk_toggle_tool_button_set_active(
+        GTK_TOGGLE_TOOL_BUTTON(GET_COMPONENT("buttonVeryFine")), TRUE);
+      break;
     case THICKNESS_FINE:
       gtk_toggle_tool_button_set_active(
         GTK_TOGGLE_TOOL_BUTTON(GET_COMPONENT("buttonFine")), TRUE);

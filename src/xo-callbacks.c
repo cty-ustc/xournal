@@ -2494,9 +2494,21 @@ on_buttonToolDefault_clicked           (GtkToolButton   *toolbutton,
 
 
 G_MODULE_EXPORT void
+on_buttonVeryFine_clicked              (GtkToolButton   *toolbutton,
+                                        gpointer         user_data)
+{
+  // fprintf(stderr, "Here VeryFine\n"); fflush(stderr);
+  if (ui.cur_mapping != 0 && !ui.button_switch_mapping) return;
+  process_thickness_activate((GtkMenuItem*)toolbutton, ui.toolno[ui.cur_mapping], THICKNESS_VERYFINE);
+  // process_thickness_activate((GtkMenuItem*)toolbutton, TOOL_PEN, THICKNESS_VERYFINE);
+}
+
+
+G_MODULE_EXPORT void
 on_buttonFine_clicked                  (GtkToolButton   *toolbutton,
                                         gpointer         user_data)
 {
+  // fprintf(stderr, "Here Fine\n"); fflush(stderr);
   if (ui.cur_mapping != 0 && !ui.button_switch_mapping) return;
   process_thickness_activate((GtkMenuItem*)toolbutton, ui.toolno[ui.cur_mapping], THICKNESS_FINE);
 }

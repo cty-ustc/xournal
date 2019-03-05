@@ -405,6 +405,10 @@ on_buttonToolDefault_clicked           (GtkToolButton   *toolbutton,
                                         gpointer         user_data);
 
 void
+on_buttonVeryFine_clicked                  (GtkToolButton   *toolbutton,
+                                        gpointer         user_data);
+
+void
 on_buttonFine_clicked                  (GtkToolButton   *toolbutton,
                                         gpointer         user_data);
 
