@@ -128,6 +128,11 @@ http://xournal.sourceforge.net/</property>
     <property name="can_focus">False</property>
     <property name="pixbuf">pixmaps/input-tablet.png</property>
   </object>
+  <object class="GtkImage" id="resize_icon">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">pixmaps/transform-crop-and-resize.svg</property>
+  </object>
   <object class="GtkImage" id="fullscreen_icon">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -2961,7 +2966,8 @@ http://xournal.sourceforge.net/</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="tooltip_text" translatable="yes">Toggle Zoom</property>
-                    <property name="stock_id">gtk-jump-to</property>
+                    <!-- <property name="stock_id">gtk-jump-to</property> -->
+                    <property name="icon_widget">resize_icon</property>
                     <signal name="clicked" handler="on_buttonZoomFast_activate" swapped="no"/>
                   </object>
                   <packing>
