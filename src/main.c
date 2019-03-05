@@ -205,7 +205,8 @@ void init_stuff (command_line_options *clOptions)
   gtk_widget_show (GTK_WIDGET (canvas));
   w = GET_COMPONENT("scrolledwindowMain");
   gtk_container_add (GTK_CONTAINER (w), GTK_WIDGET (canvas));
-  gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW (w), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  // JR: gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW (w), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW (w), GTK_POLICY_NEVER, GTK_POLICY_NEVER); // JR: 2019/02/23: disable both scrollbars
   gtk_widget_set_events (GTK_WIDGET (canvas), 
      GDK_EXPOSURE_MASK | GDK_POINTER_MOTION_MASK | GDK_BUTTON_MOTION_MASK | 
      GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_KEY_PRESS_MASK | 
