@@ -2943,9 +2943,37 @@ http://xournal.sourceforge.net/</property>
               <object class="GtkToolButton" id="buttonZoomFast">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Set Zoom</property>
-                <property name="stock_id">gtk-add</property>
+                <property name="tooltip_text" translatable="yes">Toggle Zoom</property>
+                <property name="stock_id">gtk-jump-to</property>
                 <signal name="clicked" handler="on_buttonZoomFast_activate" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolItem" id="toolitem23">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkVSeparator" id="vseparator12">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="buttonNewPageAfterCurPage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Add New Page after current</property>
+                <property name="stock_id">gtk-add</property>
+                <signal name="clicked" handler="on_journalNewPageAfter_activate" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>

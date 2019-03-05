@@ -2131,6 +2131,8 @@ void update_vbox_order(int *order)
   int i, j;
   GtkWidget *child;
   GtkBox *vboxMain = GTK_BOX(GET_COMPONENT("vboxMain"));
+  // GtkMenu *vboxMain = GTK_MENU(GET_COMPONENT("vboxMain")); // JR
+  // gtk_menu_bar_set_pack_direction(vboxMain, GTK_PACK_DIRECTION_LTR); // JR
   gboolean present[VBOX_MAIN_NITEMS];
   
   for (i=0; i<VBOX_MAIN_NITEMS; i++) present[i] = FALSE;

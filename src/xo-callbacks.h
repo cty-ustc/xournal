@@ -510,6 +510,10 @@ on_viewFullscreen_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
+on_buttonZoomFast_activate             (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
 on_optionsButtonMappings_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 

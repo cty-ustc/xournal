@@ -18,3 +18,4 @@ void create_image_from_pixbuf(GdkPixbuf *pixbuf, double *pt);
 void insert_image(GdkEvent *event);
 void rescale_images(void);
 gchar* find_pixmap_file(const gchar *filename);
+// void add_pixmap_directory(const gchar     *directory)
