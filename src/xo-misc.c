@@ -2344,6 +2344,9 @@ void do_fullscreen(gboolean active)
                                                      gdk_screen_height());
 #endif
     gtk_window_fullscreen(GTK_WINDOW(winMain));
+    // JR: try to restore menubar in fullscreen - doesn't work
+    // GtkWidget* mb = GET_COMPONENT("menubar");
+    // gtk_widget_show_now(mb);
   }
   else {
 #ifdef WIN32
