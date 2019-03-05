@@ -1704,6 +1704,8 @@ void init_config_default(void)
   ui.window_default_height = 700;
   ui.maximize_at_start = FALSE;
   ui.fullscreen = FALSE;
+  ui.vertical_menutoolbars = FALSE;
+  ui.scrollbars_off = FALSE;
   ui.scrollbar_step_increment = 30;
   ui.zoom_step_increment = 1;
   ui.zoom_step_factor = 1.5;
@@ -1844,6 +1846,12 @@ void save_config_to_file(void)
   update_keyval("general", "window_fullscreen",
     _(" start in full screen mode (true/false)"),
     g_strdup(ui.fullscreen?"true":"false"));
+  update_keyval("general", "vertical_menutoolbars",
+    _(" use the original vertical stacking for menus/toolbars (true/false)"),
+    g_strdup(ui.vertical_menutoolbars?"true":"false"));
+  update_keyval("general", "scrollbars_off",
+    _(" disable the scrollbars (true/false)"),
+    g_strdup(ui.scrollbars_off?"true":"false"));
   update_keyval("general", "window_width",
     _(" the window width in pixels (when not maximized)"),
     g_strdup_printf("%d", ui.window_default_width));
@@ -2315,6 +2323,8 @@ void load_config_from_file(void)
     ui.zoom = ui.startup_zoom = DEFAULT_ZOOM*f/100.0;
   parse_keyval_boolean("general", "window_maximize", &ui.maximize_at_start);
   parse_keyval_boolean("general", "window_fullscreen", &ui.fullscreen);
+  parse_keyval_boolean("general", "vertical_menutoolbars", &ui.vertical_menutoolbars);
+  parse_keyval_boolean("general", "scrollbars_off", &ui.scrollbars_off);
   parse_keyval_int("general", "window_width", &ui.window_default_width, 10, 5000);
   parse_keyval_int("general", "window_height", &ui.window_default_height, 10, 5000);
   parse_keyval_int("general", "scrollbar_speed", &ui.scrollbar_step_increment, 1, 5000);

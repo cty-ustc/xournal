@@ -2531,6 +2531,15 @@ http://xournal.sourceforge.net/</property>
                           </object>
                         </child>
                         <child>
+                          <object class="GtkCheckMenuItem" id="optionsVerticalMenuToolBars">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Vertical Menu/ToolBars</property>
+                            <property name="use_underline">True</property>
+                            <signal name="toggled" handler="on_optionsVerticalMenuToolBars_activate" swapped="no"/>
+                          </object>
+                        </child>
+                        <child>
                           <object class="GtkCheckMenuItem" id="optionsShortenMenus">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>

@@ -185,8 +185,6 @@ void init_stuff (command_line_options *clOptions)
   }
   gtk_button_set_relief(GTK_BUTTON(GET_COMPONENT("buttonColorChooser")), GTK_RELIEF_NONE);
 
-  allow_all_accels();
-  add_scroll_bindings();
 
   // prevent interface items from stealing focus
   // glade doesn't properly handle can_focus, so manually set it
@@ -306,6 +304,26 @@ void init_stuff (command_line_options *clOptions)
     GTK_CHECK_MENU_ITEM(GET_COMPONENT("optionsPenCursor")), ui.pen_cursor);
   gtk_check_menu_item_set_active(
     GTK_CHECK_MENU_ITEM(GET_COMPONENT("viewDisplayLayersAbovePrefs")), ui.display_layers_above);
+  //
+  //
+  // restore vertical/horizontal menu stacking
+  GtkOrientable* oof = GTK_ORIENTABLE(GET_COMPONENT("vboxMenuBarsToolBars"));
+  if (ui.vertical_menutoolbars) 
+    gtk_orientable_set_orientation(oof, GTK_ORIENTATION_VERTICAL);
+  else
+    gtk_orientable_set_orientation(oof, GTK_ORIENTATION_HORIZONTAL);
+  gtk_check_menu_item_set_active(
+    GTK_CHECK_MENU_ITEM(GET_COMPONENT("optionsVerticalMenuToolBars")), ui.vertical_menutoolbars);
+  
+  // restore scrollbars_off
+  w = GET_COMPONENT("scrolledwindowMain");
+  gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(w) , ui.scrollbars_off? GTK_POLICY_NEVER:GTK_POLICY_AUTOMATIC, ui.scrollbars_off? GTK_POLICY_NEVER:GTK_POLICY_AUTOMATIC); 
+  gtk_check_menu_item_set_active(
+    GTK_CHECK_MENU_ITEM(GET_COMPONENT("optionsScrollBarsOff")), ui.scrollbars_off);
+  gtk_widget_show(w);
+
+  allow_all_accels();
+  add_scroll_bindings();
 
   hide_unimplemented();
 
@@ -564,6 +582,13 @@ main (int argc, char *argv[])
   if (!clOptions.noNextSplash) {
       xo_warn_user(_("This is not an official build of xournal.\n\n You should not use it unless you understand what you are doing. You have been warned.\n\n--dmg"));
   }
+
+  /*
+  // JR: test to see if you can change menu/toolbar stacking on the fly - yes, it works
+  GtkOrientable* oof = GTK_ORIENTABLE(GET_COMPONENT("vboxMenuBarsToolBars"));
+  gtk_orientable_set_orientation(oof, GTK_ORIENTATION_VERTICAL);
+  gtk_orientable_set_orientation(oof, GTK_ORIENTATION_HORIZONTAL);
+  */
 
   gtk_main ();
 

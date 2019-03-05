@@ -3896,6 +3896,25 @@ on_optionsScrollBarsOff_activate       (GtkMenuItem     *menuitem,
 }
 
 G_MODULE_EXPORT void
+on_optionsVerticalMenuToolBars_activate       (GtkMenuItem     *menuitem,   
+                                               gpointer         user_data)
+{
+  end_text();
+  GtkOrientable* oof = GTK_ORIENTABLE(GET_COMPONENT("vboxMenuBarsToolBars"));
+  // gtk_orientable_set_orientation(oof, GTK_ORIENTATION_VERTICAL);
+  // gtk_orientable_set_orientation(oof, GTK_ORIENTATION_HORIZONTAL);
+  ui.vertical_menutoolbars = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM (menuitem));
+
+  if (ui.vertical_menutoolbars) 
+    gtk_orientable_set_orientation(oof, GTK_ORIENTATION_VERTICAL);
+  else
+    gtk_orientable_set_orientation(oof, GTK_ORIENTATION_HORIZONTAL);
+    
+  // force a refresh - doesn't work
+  // gtk_widget_show(oof);
+}
+
+G_MODULE_EXPORT void
 on_optionsLockHorizontalScroll_activate     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {

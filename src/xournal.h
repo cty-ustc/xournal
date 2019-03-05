@@ -357,6 +357,7 @@ typedef struct UIData {
   guint hiliter_alpha_mask;
   gboolean left_handed; // left-handed scrollbar
   gboolean scrollbars_off; // turn off both scrollbars - JR, 2019/03/05
+  gboolean vertical_menutoolbars; // use (the original) vertical stacking for the menus and toolbars
   gboolean lockHorizontalScroll; // do now allow scroll horizontally
   gboolean auto_save_prefs; // auto-save preferences ?
   gboolean shorten_menus; // shorten menus ?
