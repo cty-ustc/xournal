@@ -3432,13 +3432,18 @@ G_MODULE_EXPORT void
 on_buttonZoomFast_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    static double oldZoom = -1 ; // keeps the previous zoom, to easily undo it
+    // static double oldZoom = -1 ; // keeps the previous zoom, to easily undo it
+    static double oldZoom = 1; // keeps the previous zoom, to easily undo it
     double currentZoom = ui.zoom;
 
-    if (fabs(ui.zoom -DEFAULT_ZOOM * ui.zoom_fast_factor) < EPSILON)
+    ui.zoom = oldZoom;
+
+    /*
+    if (fabs(ui.zoom - oldZoom * ui.zoom_fast_factor) < EPSILON)
         ui.zoom = oldZoom;
     else
-        ui.zoom = DEFAULT_ZOOM * ui.zoom_fast_factor;
+        ui.zoom = oldZoom * ui.zoom_fast_factor;
+    */
 
     oldZoom = currentZoom;
     gnome_canvas_set_pixels_per_unit(canvas, ui.zoom);
