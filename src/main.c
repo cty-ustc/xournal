@@ -281,6 +281,9 @@ void init_stuff (command_line_options *clOptions)
     gtk_widget_set_sensitive(GET_COMPONENT("optionsUseXInput"), FALSE);
 
   ui.use_xinput = ui.allow_xinput && can_xinput;
+  fprintf(stdout, "main.c line 283: ui.allow_xinput = %d\n", ui.allow_xinput);
+  fprintf(stdout, "main.c line 283: can_xinput = %d\n", can_xinput);
+  fprintf(stdout, "main.c line 283: ui.use_xinput = %d\n", ui.use_xinput);
 
   gtk_check_menu_item_set_active(
     GTK_CHECK_MENU_ITEM(GET_COMPONENT("optionsProgressiveBG")), ui.progressive_bg);
@@ -319,13 +322,43 @@ void init_stuff (command_line_options *clOptions)
   gtk_widget_show (winMain);
   update_cursor();
 
-  /* this will cause extension events to get enabled/disabled, but
-     we need the windows to be mapped first */
-  gtk_check_menu_item_set_active(
-    GTK_CHECK_MENU_ITEM(GET_COMPONENT("optionsUseXInput")), ui.use_xinput);
-  gtk_toggle_tool_button_set_active(
-    GTK_TOGGLE_TOOL_BUTTON(GET_COMPONENT("buttonToggleUseXInput")), ui.use_xinput);
 
+  // fprintf(stdout, "main.c line 324: ui.use_xinput = %d\n", ui.use_xinput); fflush(stdout);
+
+  gtk_check_menu_item_set_active(
+    GTK_CHECK_MENU_ITEM(GET_COMPONENT("optionsUseXInput")), ui.use_xinput); // check the menu item if ui.use_xinput=1
+  gtk_toggle_tool_button_set_active(
+    GTK_TOGGLE_TOOL_BUTTON(GET_COMPONENT("buttonToggleUseXInput")), ui.use_xinput); // highlight the toolbar item if ui.use_xinput=1
+
+
+  // now actually set the program to use (or not) xinput 
+  #ifndef WIN32
+    if (!gtk_check_version(2, 17, 0)) {
+  #endif
+      /* GTK+ 2.17 and later: everybody shares a single native window,
+         so we'll never get any core events, and we might as well set 
+         extension events the way we're supposed to. Doing so helps solve 
+         crasher bugs in 2.17, and prevents us from losing two-button
+         events in 2.18 */
+      gtk_widget_set_extension_events(GTK_WIDGET (canvas), 
+         ui.use_xinput?GDK_EXTENSION_EVENTS_ALL:GDK_EXTENSION_EVENTS_NONE);
+  #ifndef WIN32
+    } else {
+  #endif
+      /* GTK+ 2.16 and earlier: we only activate extension events on the
+         canvas's parent GdkWindow. This allows us to keep receiving core
+         events. */
+      gdk_input_set_extension_events(GTK_WIDGET(canvas)->window, 
+        GDK_POINTER_MOTION_MASK | GDK_BUTTON_MOTION_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK,
+        ui.use_xinput?GDK_EXTENSION_EVENTS_ALL:GDK_EXTENSION_EVENTS_NONE);
+  #ifndef WIN32
+    }
+  #endif
+  update_mappings_menu();
+  // end setting xinput
+
+
+  /* this will cause extension events to get enabled/disabled, but we need the windows to be mapped first */
   /* fix a bug in GTK+ 2.16 and 2.17: scrollbars shouldn't get extended
      input events from pointer motion when cursor moves into main window */
 
