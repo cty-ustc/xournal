@@ -3433,10 +3433,12 @@ on_buttonZoomFast_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
     // static double oldZoom = -1 ; // keeps the previous zoom, to easily undo it
-    static double oldZoom = 1; // keeps the previous zoom, to easily undo it
+    static double oldZoom = 1; // keeps the previous zoom; initialized
     double currentZoom = ui.zoom;
 
+
     ui.zoom = oldZoom;
+    fprintf(stdout, "currentzoom=%g, oldzoom=%g\n", currentZoom, oldZoom);
 
     /*
     if (fabs(ui.zoom - oldZoom * ui.zoom_fast_factor) < EPSILON)
