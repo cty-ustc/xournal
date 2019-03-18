@@ -373,6 +373,7 @@ typedef struct UIData {
   gboolean save_page_number; // give the option to the user to save the page numbers
   gboolean snap_to_grid;        // force points to snap to a given grid
   gdouble grid_separation;        // distance between grip in point
+  int page_style; // JR: for saving 
 } UIData;
 
 #define BRUSH_LINKED 0

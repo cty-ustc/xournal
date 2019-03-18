@@ -1906,6 +1906,7 @@ void process_paperstyle_activate(GtkMenuItem *menuitem, int style)
   }
   if (hasdone) undo->multiop -= MULTIOP_CONT_REDO;
   if (must_upd) update_page_stuff();
+  ui.page_style = style; // JR: store for writing out to ~/.xournal/config
 }
 
 #ifndef GTK_STOCK_DISCARD

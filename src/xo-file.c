@@ -1978,7 +1978,8 @@ void save_config_to_file(void)
     g_strdup_printf("#%08x", ui.default_page.bg->color_rgba));
   update_keyval("paper", "style",
     _(" the default paper style (plain, lined, ruled, or graph)"),
-    g_strdup(bgstyle_names[ui.default_page.bg->ruling]));
+    // g_strdup(bgstyle_names[ui.default_page.bg->ruling]));
+    g_strdup(bgstyle_names[ui.page_style])); // JR
   update_keyval("paper", "apply_all",
     _(" apply paper style changes to all pages (true/false)"),
     g_strdup(ui.bg_apply_all_pages?"true":"false"));
