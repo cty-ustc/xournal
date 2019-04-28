@@ -328,7 +328,13 @@ struct Item *insert_recognized_curpath(void)
   item = g_new(struct Item, 1);
   item->type = ITEM_STROKE;
   g_memmove(&(item->brush), &(erasure->item->brush), sizeof(struct Brush));
-  item->brush.variable_width = FALSE;
+  
+  // JR: reduce pen thickness by 1: hack to account for normal pressure 
+  i = ui.brushes[ui.cur_mapping][TOOL_PEN].thickness_no;
+  item->brush.thickness_no = (i==THICKNESS_VERYFINE? THICKNESS_VERYFINE:(i-1));
+  item->brush.thickness = predef_thickness[TOOL_PEN][item->brush.thickness_no];
+  
+  item->brush.variable_width = FALSE; // TRUE leads to segfault 
   subdivide_cur_path();
   item->path = gnome_canvas_points_new(ui.cur_path.num_points);
   g_memmove(item->path->coords, ui.cur_path.coords, 2*ui.cur_path.num_points*sizeof(double));
